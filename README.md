@@ -10,7 +10,7 @@ $defaultDatabaseConfig = [
             'host' => '127.0.0.1',
             'port' => 3306,
             'user' => 'root',
-            'pass' => 'ke0vfyex0yrtwjsaw6sazeivnyxegjcg',
+            'pass' => 'yourpassword',
             'charset' => 'utf8mb4',
         ],
         'slaves' => [
@@ -19,7 +19,7 @@ $defaultDatabaseConfig = [
                 'host' => '127.0.0.1',
                 'port' => 3306,
                 'user' => 'root',
-                'pass' => 'ke0vfyex0yrtwjsaw6sazeivnyxegjcg',
+                'pass' => 'yourpassword',
                 'charset' => 'utf8mb4',
             ]
         ]
