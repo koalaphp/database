@@ -4,26 +4,26 @@
 
 ```php
 $defaultDatabaseConfig = [
-	'test' => [
-		'master' => [
-			'dbname' => 'test',
-			'host' => '127.0.0.1',
-			'port' => 3306,
-			'user' => 'root',
-			'pass' => 'ke0vfyex0yrtwjsaw6sazeivnyxegjcg',
-			'charset' => 'utf8mb4',
-		],
-		'slaves' => [
-			[
-				'dbname' => 'test',
-				'host' => '127.0.0.1',
-				'port' => 3306,
-				'user' => 'root',
-				'pass' => 'ke0vfyex0yrtwjsaw6sazeivnyxegjcg',
-				'charset' => 'utf8mb4',
-			]
-		]
-	],
+    'test' => [
+        'master' => [
+            'dbname' => 'test',
+            'host' => '127.0.0.1',
+            'port' => 3306,
+            'user' => 'root',
+            'pass' => 'ke0vfyex0yrtwjsaw6sazeivnyxegjcg',
+            'charset' => 'utf8mb4',
+        ],
+        'slaves' => [
+            [
+                'dbname' => 'test',
+                'host' => '127.0.0.1',
+                'port' => 3306,
+                'user' => 'root',
+                'pass' => 'ke0vfyex0yrtwjsaw6sazeivnyxegjcg',
+                'charset' => 'utf8mb4',
+            ]
+        ]
+    ],
 ];
 // 初始化配置
 Koala\Database\Connection::initDatabaseConfig($defaultDatabaseConfig);
@@ -41,5 +41,8 @@ $tmpMasterPdo = $conn->getMasterHandler();
 $tmpSlavePdo = $conn->getSlaveHandler();
 ```
 
-## 3. SimpleDao查询接口
+## 3. SimpleDao 接口文档（增、删、改、查等）
+
+
+
 
