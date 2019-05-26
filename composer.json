@@ -1,0 +1,39 @@
+{
+    "name": "koalaphp/database",
+    "description": "KoalaPHP MySQL Database Component",
+    "keywords": [
+        "koalaphp",
+        "database",
+        "dao",
+        "mysql",
+        "数据库Dao组件"
+    ],
+    "homepage": "https://my.oschina.net/laiconglin/blog",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "laiconglin",
+            "email": "laiconglin3@126.com",
+            "homepage": "https://my.oschina.net/laiconglin/blog"
+        }
+    ],
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.laravel-china.org"
+        }
+    },
+    "require": {
+        "php": ">=5.6.0",
+        "koalaphp/code-generator": "v0.01"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Koala\\Database\\": "src/Database"
+        }
+    }
+}

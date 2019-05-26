@@ -1,0 +1,24 @@
+CREATE TABLE `user` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` VARCHAR(32) NOT NULL DEFAULT '' COMMENT '用户昵称',
+  `phone` VARCHAR(32) NOT NULL DEFAULT '' COMMENT '手机号码',
+  `password` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '密码',
+  `money` DECIMAL(14,2) DEFAULT '0.0' COMMENT '金额',
+  `remark` VARCHAR(255) DEFAULT NULL COMMENT '备注',
+  `status` TINYINT NOT NULL DEFAULT '1' COMMENT '1: 有效，2：无效',
+  `create_time` INT NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` INT NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='会员表';
+CREATE TABLE `test_user` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` VARCHAR(32) NOT NULL DEFAULT '' COMMENT '用户昵称',
+  `phone` VARCHAR(32) NOT NULL DEFAULT '' COMMENT '手机号码',
+  `password` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '密码',
+  `status` TINYINT NOT NULL DEFAULT '1' COMMENT '1: 有效，2：无效',
+  `create_time` INT NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` INT NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='测试会员表';

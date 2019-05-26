@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="./tests/bootstrap.php" colors="true" convertErrorsToExceptions="true" verbose="true">
+	<testsuites>
+		<testsuite name="database">
+			<directory suffix="Test.php">./tests/database</directory>
+		</testsuite>
+	</testsuites>
+	<filter>
+		<whitelist processUncoveredFilesFromWhitelist="true">
+			<directory suffix=".php">./src</directory>
+		</whitelist>
+	</filter>
+	<logging>
+		<log type="coverage-html" target="./log" lowUpperBound="35"
+		 highLowerBound="70"/>
+	</logging>
+</phpunit>
