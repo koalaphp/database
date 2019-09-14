@@ -11,7 +11,7 @@ namespace Koala\Database;
 use Koala\Database\Exception\DBConnectionException;
 use Koala\Database\Exception\ErrorCode;
 
-class SimplePDO
+class SimplePdo
 {
 	/**
 	 * 当前连接的数据库配置的名字
@@ -46,6 +46,34 @@ class SimplePDO
 	 * @var array
 	 */
 	protected static $connectPool = [];
+
+	/**
+	 * SimplePdo 构造函数
+	 *
+	 * @param $dbConfigName string DB配置名称
+	 * @param array $config 数据库配置的示例值如下：
+	 * [
+	 * 		'master' => [
+	 * 			'dbname' => 'test',
+	 * 			'host' => '127.0.0.1',
+	 * 			'port' => 3306,
+	 * 			'user' => 'root',
+	 * 			'pass' => 'ke0vfyex0yrtwjsaw6sazeivnyxegjcg',
+	 * 			'charset' => 'utf8mb4',
+	 * 		],
+	 * 		'slaves' => [
+	 * 			[
+	 * 				'dbname' => 'test',
+	 * 				'host' => '127.0.0.1',
+	 * 				'port' => 3306,
+	 * 				'user' => 'root',
+	 * 				'pass' => 'ke0vfyex0yrtwjsaw6sazeivnyxegjcg',
+	 * 				'charset' => 'utf8mb4',
+	 *			],
+	 *		]
+	 *	],
+	 *
+	 */
 	public function __construct($dbConfigName, $config = [])
 	{
 		$this->dbConfigName = $dbConfigName;

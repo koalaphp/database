@@ -365,11 +365,15 @@ class UserDaoTest extends TestCase
 	protected function execCreateGenerator() {
 		$userDao = \Library\Dao\Test\UserDao::getInstance();
 		foreach ($userDao->createGenerator([]) as $userObj) {
-			echo $this->prettyJsonEncode($userObj) . PHP_EOL;
+			echo "createGenerator: " . $this->prettyJsonEncode($userObj) . PHP_EOL;
 		}
 
 		foreach ($userDao->createGenerator(["id" => ["<" => 2]]) as $userObj) {
-			echo $this->prettyJsonEncode($userObj) . PHP_EOL;
+			echo "createGenerator: " . $this->prettyJsonEncode($userObj) . PHP_EOL;
+		}
+
+		foreach ($userDao->createGenerator(["id" => [">" => 1]], 10, 1) as $userObjList) {
+			echo "createGeneratorBatch: " . $this->prettyJsonEncode($userObjList) . PHP_EOL;
 		}
 	}
 

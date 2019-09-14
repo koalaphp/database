@@ -308,8 +308,16 @@ class SimpleDao
 		$minIdObj = $this->findOne($conditions, "`{$this->primaryKey}` asc");
 		$maxIdObj = $this->findOne($conditions, "`{$this->primaryKey}` desc");
 
-		$minId = intval($minIdObj->{$this->primaryKey});
-		$maxId = intval($maxIdObj->{$this->primaryKey});
+		// 避免没有数据的情况
+		$minId = 0;
+		$maxId = -1;
+		if (!empty($minIdObj)) {
+			$minId = intval($minIdObj->{$this->primaryKey});
+		}
+		if (!empty($maxIdObj)) {
+			$maxId = intval($maxIdObj->{$this->primaryKey});
+		}
+
 		$curId = $minId;
 		while($curId <= $maxId) {
 			$newConditions = $conditions;

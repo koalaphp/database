@@ -73,7 +73,7 @@ class Connection
 	 * 获取对应数据库的连接对象 (只有真正发起SQL查询的时候，才会开始连接)
 	 *
 	 * @param $name
-	 * @return \Koala\Database\SimplePDO
+	 * @return \Koala\Database\SimplePdo
 	 * @throws DBConnectionException
 	 */
 	public static function getConnection($name) {
@@ -90,7 +90,7 @@ class Connection
 		// 检查配置是否有效
 		self::checkSingleDatabaseConfigValidation($name, $curSingleDatabase);
 
-		self::$simplePDOContainer[$name] = new \Koala\Database\SimplePDO($name, $curSingleDatabase);
+		self::$simplePDOContainer[$name] = new \Koala\Database\SimplePdo($name, $curSingleDatabase);
 		return self::$simplePDOContainer[$name];
 	}
 
