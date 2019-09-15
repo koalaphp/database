@@ -304,7 +304,7 @@ foreach ($userDao->createGenerator(["id" => [">" => 1]], 10, true) as $userObjLi
 ```
 
 
-#### 3.4.2 `$conditions` 查询where条件语句介绍
+#### 3.4.2 `$conditions` 查询where条件语句语法介绍
 
 - (1). 基本的 AND 语句
 
