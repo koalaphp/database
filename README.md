@@ -405,3 +405,75 @@ foreach ($userDao->createGenerator(["id" => [">" => 1]], 10, true) as $userObjLi
 ```
 
 
+## 4. `ShardingUserDao` 高阶用法，支持查询分库分表Dao文件
+
+```
+namespace Library\Dao\Test;
+use Koala\Database\Sharding\ShardingDao;
+/**
+ * 
+ * @method UserModel findOne($conditions = [], $sort = "id desc")
+ * @method UserModel[] findAllRecordCore($conditions = [],  $sort = "id desc", $offset = 0, $limit = 20, $fieldList = [])
+ * @method \Generator|UserModel[]|UserModel[][] createGenerator($conditions = [], $numPerTime = 100, $isBatch = false)
+ * 
+ * 会员表 Dao 类，提供基本的增删改查功能
+ */
+class ShardingUserDao extends ShardingDao
+{
+	// 连接的数据库
+    protected $database = 'test';
+    // 表名
+    protected $table = '';
+    // 主键字段名
+    protected $primaryKey = 'id';
+    
+    // select查询的时候是否使用master，默认select也是查询master
+    protected $isMaster = true;
+    
+    // select查询出来的结果映射的Model类
+    protected $modelClass = UserModel::class;
+    
+    protected $fieldList = [
+        'id' => 'int(10) unsigned', // ID
+        'name' => 'varchar(32)', // 用户昵称
+        'phone' => 'varchar(32)', // 手机号码
+        'password' => 'varchar(255)', // 密码
+        'money' => 'decimal(14,2)', // 金额
+        'remark' => 'varchar(255)', // 备注
+        'status' => 'tinyint(4)', // 1: 有效，2：无效
+        'create_time' => 'int(11)', // 创建时间
+        'update_time' => 'int(11)', // 更新时间
+    ];
+}
+```
+
+示例代码：
+
+```
+// 获取ShardingUserDao单例
+$shardingUserDao = \Library\Dao\Test\ShardingUserDao::getShardingInstance("user01");
+// 插入
+$insertData = [
+    'name' => 'han',
+    'phone' => '13688888888',
+    'password' => password_hash("123456", PASSWORD_DEFAULT),
+    'money' => 10.12,
+    'remark' => NULL,
+    'status' => true,
+    'create_time' => time(),
+    'update_time' => time(),
+];
+$curId1 = $shardingUserDao->insertRow($insertData, true);
+
+// 更新示例
+$updateData = [
+    'phone' => '13688888899',
+    'status' => 1,
+    'update_time' => time(),
+];
+$res = $shardingUserDao->updateRow($curId1, $updateData);
+
+// 查询示例
+$userObj = $shardingDao->findAllRecordCore(["id" => $curId1]);
+```
+
