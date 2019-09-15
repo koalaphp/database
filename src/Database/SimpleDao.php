@@ -83,8 +83,8 @@ class SimpleDao
 	/**
 	 * 查询符合条件的某一个对象
 	 * $conditions 的详细用法参见findAllCore
-	 * @param array $conditions
-	 * @param string $sort
+	 * @param array $conditions 查询where条件语句
+	 * @param string $sort  排序方式，默认"id desc"
 	 * @return \stdClass|null
 	 */
 	public function findOne($conditions = [], $sort = "id desc") {
@@ -98,7 +98,7 @@ class SimpleDao
 
 	/**
 	 * 获取该查询条件下的总数
-	 * @param array $conditions
+	 * @param array $conditions 查询where条件语句
 	 * @return int
 	 */
 	public function findCount($conditions = []) {
@@ -220,7 +220,7 @@ class SimpleDao
 	 *  ];
 	 *
 	 *
-	 * @param array $conditions
+	 * @param array $conditions 查询where条件语句
 	 * @param string $sort 可选 排序方式 默认为根据主键降序，当 $sort 为空字符串的时候，表示不进行 order by。
 	 * @param int $offset 可选 偏移量 默认：0
 	 * @param int $limit 可选 单次查询出的个数 默认：20，特殊情况当limit 等于 -1 时表示查找全部。
@@ -299,12 +299,12 @@ class SimpleDao
 	 * 可以实现循环获取所有行的功能（适用于在定时任务中扫描一整张表）
 	 *
 	 * 生成指定条件的迭代器
-	 * @param array $conditions
-	 * @param int $numPerTime
-	 * @param bool $isBatch false: 一次返回1个结果，true：一次批量返回 {$numPerTime} 个结果
+	 * @param array $conditions 查询where条件语句
+	 * @param int $numPerTime 单次查询的个数
+	 * @param bool $isBatch 默认true, false: 一次返回1个结果，true：一次批量返回 {$numPerTime} 个结果
 	 * @return \Generator
 	 */
-	public function createGenerator($conditions = [], $numPerTime = 100, $isBatch = false) {
+	public function createGenerator($conditions = [], $numPerTime = 100, $isBatch = true) {
 		$minIdObj = $this->findOne($conditions, "`{$this->primaryKey}` asc");
 		$maxIdObj = $this->findOne($conditions, "`{$this->primaryKey}` desc");
 
@@ -393,8 +393,8 @@ class SimpleDao
 	/**
 	 * 通过ID（主键）更新特定的一行记录
 	 *
-	 * @param int $id
-	 * @param array $updateData
+	 * @param int $id 主键ID
+	 * @param array $updateData 更新的数据
 	 * @return bool
 	 */
 	public function updateRow($id, $updateData) {
@@ -433,8 +433,8 @@ class SimpleDao
 	/**
 	 * 通过ID（主键）列表来更新特定的多行记录
 	 *
-	 * @param array $idList
-	 * @param array $updateData
+	 * @param array $idList ID（主键）列表
+	 * @param array $updateData  更新的数据
 	 * @param bool $isReturnEffectRows 是否返回影响的行数
 	 * @return bool
 	 */
@@ -482,7 +482,7 @@ class SimpleDao
 
 	/**
 	 * 通过ID（主键）删除特定的一行记录
-	 * @param int $id
+	 * @param int $id 主键ID
 	 * @return bool
 	 */
 	public function deleteRow($id = 0) {

@@ -84,7 +84,7 @@ $defaultDatabaseConfig = [
 
 // 初始化配置
 Koala\Database\Connection::initDatabaseConfig($defaultDatabaseConfig);
-// 打开输出到屏幕的日志
+// 打开输出拼接的SQL语句到屏幕的日志
 Koala\Database\DBLogger::$isPrint = true;
 
 class CurLogger {
