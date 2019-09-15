@@ -474,6 +474,6 @@ $updateData = [
 $res = $shardingUserDao->updateRow($curId1, $updateData);
 
 // 查询示例
-$userObj = $shardingDao->findAllRecordCore(["id" => $curId1]);
+$userObj = $shardingDao->findOne(["id" => $curId1]);
 ```
 
